@@ -1,0 +1,2 @@
+blast_db/EcPlGe_db.nsq filter=lfs diff=lfs merge=lfs -text
+data/Ecoli.fas filter=lfs diff=lfs merge=lfs -text
