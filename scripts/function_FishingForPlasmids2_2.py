@@ -127,7 +127,7 @@ def function_FishingForPlasmids2_2(contigs_vs_plasmidFinder, contigs_vs_EcPlGe, 
 
     # 2) going trough the contigs_vs_EcPlGe blast file and assign contigs to either the chromosome or a plasmid type
     # It should not matter how many hits per contig are in the contigs_vs_EcPlGe blast file, due to a contig list that is created
-    # the assigned contigs are written in the assigning_contigs file, which was made in L20
+    # the assigned contigs are written in the assigning_contigs file
 
     print("-- START -- assigning contigs to chromosome or plasmid")
     print("assigned contigs can be found in the following output file:", assigning_contigs)
@@ -151,13 +151,12 @@ def function_FishingForPlasmids2_2(contigs_vs_plasmidFinder, contigs_vs_EcPlGe, 
         else:
             a_count = a_count + 1
             if cep_contig in contig_list:
-                if cep_dbID.startswith('pl_'):  # alle plasmiden in de db beginnen met pl_
+                if cep_dbID.startswith('|gi'):  # all plasmids in the EcPlGe database start with |gi
                     for ppf_p_ID, ptype in PlGe_vs_pFinder_library.items():
                         if cep_dbID == ppf_p_ID:
                             if ptype in plasmidFinder_list:
                                 try:
                                     with open(assigning_contigs, 'a') as out1:
-                                        # hier aanpassen ptype
                                         if ptype in types:
                                             ptype = types[ptype]
                                             if ptype in pmlst:
@@ -183,7 +182,7 @@ def function_FishingForPlasmids2_2(contigs_vs_plasmidFinder, contigs_vs_EcPlGe, 
             else:
                 contig_list.extend([cep_contig])
                 a_count = 1
-                if cep_dbID.startswith('pl_'):  # all plasmids in the database all start with pl_
+                if cep_dbID.startswith('|gi'):  # all plasmids in the EcPlGe database start with |gi
                     for ppf_p_ID, ptype in PlGe_vs_pFinder_library.items():
                         if cep_dbID == ppf_p_ID:
                             if ptype in plasmidFinder_list:
@@ -235,8 +234,6 @@ def function_FishingForPlasmids2_2(contigs_vs_plasmidFinder, contigs_vs_EcPlGe, 
     except IOError:
         print("cannot open assigned contigs file:", assigning_contigs)
 
-    # hier plasmid finder list aanpasssen
-
     pFtypen = []
     for plasmid in plasmidFinder_list:
         if plasmid in types:
@@ -245,7 +242,7 @@ def function_FishingForPlasmids2_2(contigs_vs_plasmidFinder, contigs_vs_EcPlGe, 
                 plasmid = pmlst[plasmid].rstrip()
         if plasmid not in pFtypen:
             pFtypen.append(plasmid)
-    # print(pFtypen)
+    
     for plasmid in pFtypen:
         output2 = str(outputDIR) + str(isolate_name) + "_" + plasmid + ".fasta"
         try:
