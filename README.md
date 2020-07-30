@@ -6,12 +6,16 @@ Fishing For Plasmids
 
 This repository contains a tool to fish plasmid contigs out of an Escherichia coli assembly. The Fishing For Plasmids tool tries to distinguish plasmid contigs from chromosome contigs and plasmid contigs from plasmid contigs, in case multiple plasmid types are present in the genome. The tool enables investigators to study plasmids based on E. coli WGS data.
 
+Databases for the tool are hosted on figshare
+https://figshare.com/articles/dataset/FishingForPlasmids_databases/12735692 
+
 Installation
 
-1.      Git clone repository to wanted location
-2.      Create a directory named “data” in this location
-3.      Create the following directories in the “data” directory: “assemblyDir”, “blast_EcPlGe”, “blast_pFinder”, “FFP_output”, “pmlst_out”
-4.      Create a directory named “pMLST” in the “scripts” directory
+1. Git clone repository to wanted location
+2. Obtain databases from Figshare and place them in the "blast_db" directory
+3. Create a directory named “data” in this location
+4. Create the following directories in the “data” directory: “assemblyDir”, “blast_EcPlGe”, “blast_pFinder”, “FFP_output”, “pmlst_out”
+5. Create a directory named “pMLST” in the “scripts” directory
 
 Dependencies
 
